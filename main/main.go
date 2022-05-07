@@ -11,11 +11,10 @@ func main() {
 	log.Println("Go Routines...")
 	rt.SimpleRoutine()
 	rt.GoRoutineWithWaitGroup()
-	//stopGoRoutineUsingChannel
-	numbers := rt.Numbers()
-	fmt.Println(<-numbers)
-	fmt.Println(<-numbers)
-	numbers <- 0
+	//communicateGoRoutineUsingChannel
+	ch:=make(chan string)
+	go rt.GetMessage(ch)
+	fmt.Println(<-ch)
 	rt.GoRoutineWithWaitGroupTimeout()
 	rt.ForLoopUsingGoRouintes()
 	rt.ForLoopUsingGoRouintesWithChannel()
